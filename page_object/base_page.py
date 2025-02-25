@@ -1,6 +1,7 @@
 from selenium.common import NoSuchElementException
 from selenium.webdriver.remote.webdriver import WebDriver
-from selenium.webdriver.support.expected_conditions import visibility_of_element_located
+from selenium.webdriver.support.expected_conditions import visibility_of_element_located, \
+    visibility_of_all_elements_located
 from selenium.webdriver.support.wait import WebDriverWait
 
 
@@ -11,6 +12,8 @@ class BasePage:
 
     def _find(self, locator: tuple):
         return self._driver.find_element(*locator)
+    def _find_elements(self, locator: tuple):
+        return self._driver.find_elements(*locator)
 
     def _type(self, locator: tuple, text: str, time: int = 10):
         self._wait_until_element_is_visible(locator, time)
@@ -19,6 +22,10 @@ class BasePage:
     def _wait_until_element_is_visible(self, locator, time: int=10):
         wait = WebDriverWait(self._driver, time)
         wait.until(visibility_of_element_located(locator))
+
+    def _wait_until_elements_are_visible(self, locator, time: int=10):
+        wait = WebDriverWait(self._driver, time)
+        wait.until(visibility_of_all_elements_located(locator))
 
     def _wait_until_element_is_clickable(self, locator, time: int=10):
         wait = WebDriverWait(self._driver, time)
@@ -48,6 +55,10 @@ class BasePage:
     def _clear_input(self, locator: tuple, time: int =10):
         self._wait_until_element_is_clickable(locator, time)
         return self._find(locator).clear()
+
+    def _get_input_value(self, locator: tuple, time: int=10):
+        self._wait_until_element_is_clickable(locator)
+        return self._find(locator).get_attribute("value")
 
 
 

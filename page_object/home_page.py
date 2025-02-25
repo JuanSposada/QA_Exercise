@@ -10,7 +10,9 @@ class HomePage(BasePage):
     __search_input = (By.ID, "mainSearchbar")
     __search_button = (By.XPATH, '//*[@id="sayt"]/div[1]/div/div/button[2]')
     __search_entry_label = (By.XPATH, '//*[@id="__next"]/main/div[2]/div[1]/div/div[3]/div[1]/div/div/div/ul/li[2]/span/strong')
-
+    __listing_products_element = (By.CLASS_NAME, 'o-listing__products')
+    __brand_cards = (By.CLASS_NAME, "a-card-brand")
+    __card_description = (By.CLASS_NAME, "a-card-description")
 
     def __init__(self, driver: WebDriver):
         super().__init__(driver)
@@ -22,9 +24,37 @@ class HomePage(BasePage):
         super()._type(self.__search_input, text)
         super()._click(self.__search_button)
 
+
+    def is_listing_products_displayed(self):
+        super()._wait_until_element_is_visible(self.__listing_products_element)
+        return super()._is_displayed(self.__listing_products_element)
+
     def is_search_label_displayed(self):
         super()._wait_until_element_is_visible(self.__search_entry_label)
         return super()._is_displayed(self.__search_entry_label)
+
+    def is_brand_matching_results(self):
+        super()._wait_until_elements_are_visible(self.__brand_cards)
+        cards = super()._find_elements(self.__brand_cards)
+        cards_text = [card.text for card in cards]
+        return super()._get_input_value(self.__search_input).upper() in cards_text
+
+    def is_physical_characteristics_matching_results(self):
+        super()._wait_until_elements_are_visible(self.__card_description)
+        description = super()._find_elements(self.__card_description)
+        description_text = [desc.text.lower() for desc in description]
+        characteristics = super()._get_input_value(self.__search_input).lower().split()
+        print('ch: ', characteristics, 'desc: ', description_text)
+        return  [word for word in characteristics if any(word in desc for desc in description_text)]
+
+    def is_model_matching_results(self):
+        return self.is_physical_characteristics_matching_results()
+
+
+
+
+
+
 
 
     

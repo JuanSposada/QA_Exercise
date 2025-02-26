@@ -41,3 +41,4 @@ class SearchPage(BasePage):
         return self.is_physical_characteristics_matching_results()
 
 
+

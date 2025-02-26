@@ -39,3 +39,5 @@ class SearchPage(BasePage):
 
     def is_model_matching_results(self):
         return self.is_physical_characteristics_matching_results()
+
+

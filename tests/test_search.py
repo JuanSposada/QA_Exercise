@@ -1,3 +1,5 @@
+from re import search
+
 import pytest
 
 from conftest import driver
@@ -34,8 +36,6 @@ class TestSearch:
         home_page.open()
         search_page = home_page.search("qn65q65dafxzx")
         assert search_page.is_model_matching_results(), "Products dont match"
-
-
 
 
 

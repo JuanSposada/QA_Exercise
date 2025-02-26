@@ -11,7 +11,6 @@ class HomePage(BasePage):
     __search_input = (By.ID, "mainSearchbar")
     __search_button = (By.XPATH, '//*[@id="sayt"]/div[1]/div/div/button[2]')
     __search_entry_label = (By.XPATH, '//*[@id="__next"]/main/div[2]/div[1]/div/div[3]/div[1]/div/div/div/ul/li[2]/span/strong')
-
     def __init__(self, driver: WebDriver):
         super().__init__(driver)
 

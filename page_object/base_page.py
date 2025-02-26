@@ -1,7 +1,7 @@
 from selenium.common import NoSuchElementException
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support.expected_conditions import visibility_of_element_located, \
-    visibility_of_all_elements_located
+    visibility_of_all_elements_located, element_to_be_clickable
 from selenium.webdriver.support.wait import WebDriverWait
 
 
@@ -29,7 +29,7 @@ class BasePage:
 
     def _wait_until_element_is_clickable(self, locator, time: int=10):
         wait = WebDriverWait(self._driver, time)
-        wait.until(visibility_of_element_located(locator))
+        wait.until(element_to_be_clickable(locator))
 
     def _click(self, locator: tuple, time: int=10):
         self._wait_until_element_is_visible(locator, time)

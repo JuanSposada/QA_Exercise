@@ -18,7 +18,6 @@ class TestFilterBy:
         filter_page.filter_by_size()
 
     @pytest.mark.filter
-    @pytest.mark.debug
     def test_filter_by_range(self,driver):
         filter_page = FilterPage(driver)
         filter_page.open()

@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
-
+from selenium.webdriver.common.keys import Keys
 from page_object.base_page import BasePage
 from page_object.search_page import SearchPage
 
@@ -18,9 +18,9 @@ class HomePage(BasePage):
         super()._open_url(self.__url)
 
     def search(self, text):
-        super()._type(self.__search_input, text)
-        super()._click(self.__search_button)
+        super()._type_and_press_enter(self.__search_input, text)
         return SearchPage(self._driver)
+
 
 
 

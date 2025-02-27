@@ -3,6 +3,8 @@ from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support.expected_conditions import visibility_of_element_located, \
     visibility_of_all_elements_located, element_to_be_clickable
 from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support.ui import Select
+from selenium.webdriver.common.keys import Keys
 
 
 class BasePage:
@@ -57,11 +59,18 @@ class BasePage:
         return self._find(locator).clear()
 
     def _get_input_value(self, locator: tuple, time: int=10):
-        self._wait_until_element_is_clickable(locator)
+        self._wait_until_element_is_clickable(locator, time)
         return self._find(locator).get_attribute("value")
 
+    def _select_from_dropdown_menu(self, locator: tuple, text:str, time: int= 10):
+        self._wait_until_element_is_visible(locator, time)
+        self._create_selector(locator).select_by_visible_text(text)
 
+    def _create_selector(self, locator: tuple):
+        return Select(self._find(locator))
 
-
+    def _type_and_press_enter(self, locator: tuple, text: str, time: int = 10):
+        self._wait_until_element_is_visible(locator, time)
+        self._find(locator).send_keys(text + Keys.ENTER)
 
 

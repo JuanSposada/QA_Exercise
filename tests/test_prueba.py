@@ -10,3 +10,4 @@ def test_prueba():
     driver.get("https://www.liverpool.com.mx/tienda?s=smart+tv")
     checkbox_locator = driver.find_element(By.XPATH,"//div[@id='brandFilterWEB']/div[3]/div/div/input" )
     checkbox_locator.click()
+

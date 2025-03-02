@@ -20,7 +20,6 @@ class SearchPage(BasePage):
         return super()._is_displayed(self.__listing_products_element)
 
 
-
     def is_brand_matching_results(self):
         super()._wait_until_elements_are_visible(self.__brand_cards)
         cards = super()._find_elements(self.__brand_cards)

@@ -9,8 +9,8 @@ class TestCreateAccount:
     @pytest.mark.create_account
     @pytest.mark.parametrize(
         "email, password, name, last_name, second_last_name, day, month, year, genre, phone_number",
-        ["supertest@test.com", "Testing123", "juan", "moreno", "posada", "2", "Dic", "2000", "hombre",
-         "6861234567"])
+        [("supertest12@test.com", "Testing123", "juan", "moreno", "posada", "2", "Dic", "2000", "hombre",
+         "6861234567")])
     def test_create_account(self, driver, email, password, name, last_name, second_last_name, day, month, year, genre,
                             phone_number):
         create_account_page = CreateAccountPage(driver)

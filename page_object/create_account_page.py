@@ -21,6 +21,8 @@ class CreateAccountPage(BasePage):
     __create_button_data_form = (By.XPATH, '//button[@class="a-btn a-btn--primary"]')
     __phone_input_field = (By.ID, 'phone')
     __phone_continue_button = (By.XPATH, '//div[@class="c574b8c0d"]/button')
+    __error_email_element = (By.ID, "error-element-email")
+    __error_phone_element =(By.ID, "error-element-phone")
 
     def __init__(self, driver: WebDriver):
         super().__init__(driver)
@@ -49,11 +51,15 @@ class CreateAccountPage(BasePage):
             super()._click(self.__female_input_radio)
         super()._click(self.__create_button_data_form)
 
-    def enter_phone_number(self, region: str,phone_number: str):
+    def enter_phone_number(self,phone_number: str):
         super()._type(self.__phone_input_field, phone_number)
         super()._click(self.__phone_continue_button)
 
+    def is_error_email(self):
+        return super()._is_displayed(self.__error_email_element)
 
+    def is_error_phone(self):
+        return super()._is_displayed(self.__error_phone_element)
 
 
 

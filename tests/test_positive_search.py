@@ -1,5 +1,3 @@
-from re import search
-
 import pytest
 
 from conftest import driver
@@ -10,7 +8,7 @@ from page_object.home_page import HomePage
 class TestSearch:
 
     @pytest.mark.search
-    @pytest.mark.parametrize("article", [("Smart tv"),("laptop"),("camiseta"), ('perfume')])
+    @pytest.mark.parametrize("article", ["Smart tv", "laptop", "camiseta", 'perfume'])
     def test_positive_search(self, driver, article):
         home_page = HomePage(driver)
         home_page.open()

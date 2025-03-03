@@ -29,7 +29,6 @@ class TestFilterBy:
 
     @pytest.mark.filter
     @pytest.mark.parametrize("query", ["smart tv", "smartphone", "lavadora"])
-    @pytest.mark.debug
     def test_filter_by_range(self,driver, query):
         home_page = HomePage(driver)
         home_page.open()

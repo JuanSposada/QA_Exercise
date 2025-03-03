@@ -10,6 +10,7 @@ class SearchPage(BasePage):
     __brand_cards = (By.CLASS_NAME, "a-card-brand")
     __card_description = (By.CLASS_NAME, "a-card-description")
     __search_input = (By.ID, "mainSearchbar")
+    __null_query_element = (By.CLASS_NAME, "o-nullproduct-title-query")
 
     def __init__(self, driver: WebDriver):
         super().__init__(driver)
@@ -38,6 +39,9 @@ class SearchPage(BasePage):
 
     def is_model_matching_results(self):
         return self.is_physical_characteristics_matching_results()
+
+    def is_null_query_displayed(self):
+        return super()._is_displayed(self.__null_query_element)
 
 
 

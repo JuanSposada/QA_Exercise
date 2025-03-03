@@ -43,6 +43,7 @@ class BasePage:
 
     def _is_displayed(self, locator: tuple):
         try:
+            self._wait_until_element_is_visible(locator)
             return self._find(locator).is_displayed()
         except NoSuchElementException:
             return False
@@ -72,5 +73,6 @@ class BasePage:
     def _type_and_press_enter(self, locator: tuple, text: str, time: int = 10):
         self._wait_until_element_is_visible(locator, time)
         self._find(locator).send_keys(text + Keys.ENTER)
+
 
 

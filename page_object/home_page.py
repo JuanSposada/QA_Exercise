@@ -6,7 +6,6 @@ from page_object.search_page import SearchPage
 
 
 class HomePage(BasePage):
-
     __url = 'https://www.liverpool.com.mx/tienda/home'
     __search_input = (By.ID, "mainSearchbar")
     __search_button = (By.XPATH, '//*[@id="sayt"]/div[1]/div/div/button[2]')
